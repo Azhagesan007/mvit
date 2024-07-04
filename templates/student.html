@@ -1,0 +1,50 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %} Add Student {% endblock %}
+
+{% block styles %}
+
+{{ super() }}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/fca04b2de7.js" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <style>
+        body, #footer{
+            background-color: #3F979B;
+            text-align: center;
+
+        }
+        a {
+          text-decoration: none;
+          color: white;
+        }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+  {% include 'header.html' %}
+  <div class="row">
+  <div class="col-3"><h1>Name</h1></div><div class="col-3"><h1>Id no</h1></div><div class="col-2"><h1>Year</h1></div><div class="col-2"><h1>Section</h1></div>
+  </div>
+    {% for item in data: %}
+    <div class="row">
+      <div class="col-3"><h1>{{item.name}}</h1></div>
+      <div class="col-3"><h1>{{item.enrollment}}</h1></div>
+      <div class="col-2"><h1>{{item.year}}</h1></div>
+      <div class="col-2"><h1>{{item.section}}</h1></div>
+      <div class="col-2"><button class="btn btn-outline-dark"><a href="{{url_for('changes', id_no=item.id)}}">Delete or Update data</a></button></div>
+
+
+    </div>
+{% endfor %}
+
+<!--  {% include 'footer.html' %}-->
+{% include 'footer.html' %}
+{% endblock %}
+
